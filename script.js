@@ -33,3 +33,27 @@ document.querySelectorAll(".tile").forEach(tile => {
   });
 
 });
+
+
+
+
+document.querySelectorAll('.cover').forEach(button => {
+
+  button.addEventListener('click', function(e) {
+    e.preventDefault();   // 🚫 URL change rokega
+    e.stopPropagation();  // extra safety
+
+    const src = this.dataset.src;
+    const tile = this.closest('.tile');
+    const frameWrapper = tile.querySelector('.tile-frame');
+    const iframe = frameWrapper.querySelector('iframe');
+
+    if (!iframe.src) {     // ek hi baar load karega
+      iframe.src = src;
+    }
+
+    frameWrapper.classList.remove('is-hidden');
+    this.style.display = 'none';
+  });
+
+});
