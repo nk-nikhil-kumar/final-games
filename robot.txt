@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://theplayhub.xyz/sitemap.xml
