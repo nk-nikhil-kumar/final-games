@@ -157,7 +157,7 @@
       <span class="kicker reveal">OUR COLLECTION</span>
       <h2 class="title reveal">Featured browser games</h2>
       <p class="muted reveal" style="margin-top:12px; max-width:800px;">
-        Hover any card to preview the game. Click to launch it directly inside the page.
+        Hover any card to preview the game. Click to launch it in a new tab.
       </p>
 
       <section class="games-grid">
@@ -165,9 +165,9 @@
         <!-- 1 -->
         <article class="tile reveal">
           <button class="cover" type="button" data-src="https://tangerine-bavarois-31402b.netlify.app/">
-            <img class="cover-img" src="images/aimim.png" alt="Aim game cover" loading="eager" decoding="sync" fetchpriority="high">
+            <img class="cover-img" src="aimim.png" alt="Aim game cover" loading="eager" decoding="sync" fetchpriority="high">
             <video class="cover-vid" muted loop playsinline preload="metadata">
-              <source src="images/aim.mp4" type="video/mp4">
+              <source src="aim.mp4" type="video/mp4">
             </video>
 
             <div class="tile-badge">Action</div>
@@ -187,7 +187,7 @@
           <button class="cover" type="button" data-src="https://loquacious-meerkat-bade16.netlify.app/">
             <img class="cover-img" src="maze.png" alt="Maze game cover" loading="eager" decoding="sync" fetchpriority="high">
             <video class="cover-vid" muted loop playsinline preload="metadata">
-              <source src="maze vid.mp4" type="video/mp4">
+              <source src="mazevid.mp4" type="video/mp4">
             </video>
 
             <div class="tile-badge">Puzzle</div>
@@ -227,7 +227,7 @@
           <button class="cover" type="button" data-src="https://taupe-axolotl-c182ba.netlify.app/">
             <img class="cover-img" src="teacher.png" alt="Teacher game cover" loading="eager" decoding="sync" fetchpriority="high">
             <video class="cover-vid" muted loop playsinline preload="metadata">
-              <source src="teacher vid.mp4" type="video/mp4">
+              <source src="teachervid.mp4" type="video/mp4">
             </video>
 
             <div class="tile-badge">Casual</div>
@@ -363,17 +363,17 @@
           <h3>Contact Channels</h3>
 
           <a class="contactRow" href="https://www.instagram.com/shisu45_/" target="_blank" rel="noopener">
-            <img src="images/icons8-instagram-50.png" alt="Instagram">
+            <img src="icons8-instagram-50.png" alt="Instagram">
             <span><b>Instagram</b> — DM for quick response</span>
           </a>
 
           <a class="contactRow" href="mailto:theplayHubprivate@gmail.com">
-            <img src="images/icons8-email-50.png" alt="Email">
+            <img src="icons8-email-50.png" alt="Email">
             <span><b>Email</b> — theplayHubprivate@gmail.com</span>
           </a>
 
           <a class="contactRow" href="https://discord.gg/WHUBhecV" target="_blank" rel="noopener">
-            <img src="images/icons8-discord-logo-80.png" alt="Discord">
+            <img src="icons8-discord-logo-80.png" alt="Discord">
             <span><b>Discord</b> — join the server</span>
           </a>
         </div>
@@ -471,12 +471,6 @@
 
     </div>
   </footer>
-      </section>
-
-    </main>
-  </div>
-
-
   <div class="blog"><p># Best Free Browser Games to Play Online (No Download Required) – 2026 Guide
 
 If you are looking for the best free browser games that you can play instantly without downloading anything, you are in the right place. Online browser games have become extremely popular because they are fast, lightweight, and work on almost any device including PC, laptop, and mobile.
@@ -574,5 +568,33 @@ Enjoy the best free browser games and discover your next favorite game today.
 </p></div>
 
   <script src="script.js"></script>
+  
+  
+
+  <!-- force games to open in new tab and disable inline iframe opening -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.tile-frame').forEach(function (frame) {
+        frame.classList.add('is-hidden');
+        const iframe = frame.querySelector('iframe');
+        if (iframe) iframe.removeAttribute('src');
+      });
+
+      document.querySelectorAll('.cover').forEach(function (oldBtn) {
+        const newBtn = oldBtn.cloneNode(true);
+        oldBtn.parentNode.replaceChild(newBtn, oldBtn);
+
+        newBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const url = newBtn.getAttribute('data-src');
+          if (url) {
+            window.open(url, '_blank', 'noopener');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
