@@ -34,7 +34,7 @@ body {
   min-height: 100vh; /* Fixed height ki jagah full view height */
   padding: 80px 44px;
 }
-* { outline: 1px solid red !important; }
+
 
 body{
   font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
