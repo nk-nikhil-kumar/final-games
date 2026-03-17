@@ -572,29 +572,6 @@ Enjoy the best free browser games and discover your next favorite game today.
   
 
   <!-- force games to open in new tab and disable inline iframe opening -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.tile-frame').forEach(function (frame) {
-        frame.classList.add('is-hidden');
-        const iframe = frame.querySelector('iframe');
-        if (iframe) iframe.removeAttribute('src');
-      });
-
-      document.querySelectorAll('.cover').forEach(function (oldBtn) {
-        const newBtn = oldBtn.cloneNode(true);
-        oldBtn.parentNode.replaceChild(newBtn, oldBtn);
-
-        newBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          const url = newBtn.getAttribute('data-src');
-          if (url) {
-            window.open(url, '_blank', 'noopener');
-          }
-        });
-      });
-    });
-  </script>
+ 
 </body>
 </html>
