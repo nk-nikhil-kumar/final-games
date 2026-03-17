@@ -800,7 +800,7 @@ h2.title{
 .contact-item{color:rgba(255,255,255,.82);margin:14px 0;line-height:1.5;font-size:14px}
 
 /* Reveal */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
+.reveal{opacity:1;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 
 .blog{display:none}
