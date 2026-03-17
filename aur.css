@@ -19,21 +19,12 @@
 
 html{scroll-behavior:smooth}
 
+html, body { height: 100%; }
 
 
-html {
-  height: -webkit-fill-available;                  /* yha changes kiya maine*/
-}
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
 
-.hero {
-  min-height: 100vh; /* Fixed height ki jagah full view height */
-  padding: 80px 44px;
-}
+
+
 
 
 body{
