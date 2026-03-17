@@ -379,7 +379,7 @@ nav a.active::after{
   background:
     radial-gradient(circle at 20% 20%, rgba(255,255,255,.55), transparent 55%),
     radial-gradient(circle at 80% 30%, rgba(255,255,255,.25), transparent 60%),
-    url("images/aimim.png");
+    url("aimim.png");
   background-size:cover;
   background-position:center;
   filter:saturate(1.05) contrast(1.05);
@@ -573,7 +573,7 @@ h2.title{
   box-shadow:0 30px 60px rgba(0,0,0,.12);
   border:1px solid rgba(0,0,0,.05);
   min-height:520px;
-  background:url("images/tianim.png") center/cover no-repeat;
+  background:url("tianim.png") center/cover no-repeat;
 }
 .about-img::after{
   content:"";
