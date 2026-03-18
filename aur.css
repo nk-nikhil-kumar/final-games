@@ -98,7 +98,12 @@ header.scrolled{
   width:52px;
   height:52px;
   border-radius:16px;
-  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  background:  url("finallogo.png");   
+  
+  background-position: center; /* Image ko beech mein rakhega */
+background-size: 185%;
+
+/*linear-gradient(135deg,var(--purple),var(--purple2));*/
   display:grid;
   place-items:center;
   color:#fff;
