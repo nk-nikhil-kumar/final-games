@@ -369,9 +369,9 @@ nav a.active::after{
   content:"";
   position:absolute; inset:-60px;
   background:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,.55), transparent 55%),
-    radial-gradient(circle at 80% 30%, rgba(255,255,255,.25), transparent 60%),
-    url("aimim.png");
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.166), transparent 55%),    /*/ rgba(255,255,255,.55),    .25  */
+    radial-gradient(circle at 80% 30%, rgba(83, 82, 82, 0.099), transparent 60%),
+    url("ninja.jpg");
   background-size:cover;
   background-position:center;
   filter:saturate(1.05) contrast(1.05);
