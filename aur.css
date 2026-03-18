@@ -111,7 +111,7 @@ background-size: 185%;
   box-shadow:0 14px 30px rgba(106,31,181,.18);
 }
 .brand .name{display:flex;flex-direction:column;line-height:1.05}
-.brand .name b{letter-spacing:.03em;color:#111;font-size:18px}
+.brand .name b{letter-spacing:.03em;color:#111;font-size:18px ; margin-bottom: 3px;}
 .brand .name small{color:#777;font-size:11px;letter-spacing:.22em}
 
 nav{
