@@ -3,48 +3,185 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Thanks - Toshisu Gamez</title>
+  <title>Thanks - The Playhub</title>
 
-  <!-- Same font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Reuse your same CSS -->
-  <link rel="stylesheet" href="aur.css" />
+  <style>
+    /* 1. Reset & Variables */
+    :root {
+      --purple: #6a1fb5;
+      --purple2: #9b5de5;
+      --bg: #ffffff;
+      --radius: 24px;
+      --glass: rgba(255, 255, 255, 0.75);
+      --shadow: 0 30px 80px rgba(106, 31, 181, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* 2. Background Orbs */
+    body::before, body::after {
+      content: "";
+      position: absolute;
+      width: min(500px, 80vw);
+      height: min(500px, 80vw);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(155, 93, 229, 0.12), transparent 70%);
+      z-index: -1;
+      animation: floatOrb 12s infinite alternate ease-in-out;
+    }
+    body::before { top: -10%; left: -10%; }
+    body::after { bottom: -10%; right: -10%; animation-delay: -6s; }
+
+    @keyframes floatOrb {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(40px, 40px) scale(1.1); }
+    }
+
+    /* 3. Card Styling */
+    .success-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(106, 31, 181, 0.1);
+      border-radius: 40px;
+      padding: 50px 30px;
+      width: min(480px, 92%);
+      text-align: center;
+      box-shadow: var(--shadow);
+      animation: cardEntry 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      z-index: 10;
+    }
+
+    @keyframes cardEntry {
+      from { opacity: 0; transform: translateY(40px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* 4. Logo & Branding */
+    .logo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+    .logo-img {
+      width: 72px; height: 72px;
+      border-radius: 20px;
+      background: url("finallogo.png") center/185% no-repeat;
+      box-shadow: 0 15px 35px rgba(106, 31, 181, 0.2);
+    }
+    .brand-name {
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #111;
+      font-size: 22px;
+    }
+
+    /* 5. Typography */
+    .badge {
+      display: inline-block;
+      padding: 6px 18px;
+      background: rgba(106, 31, 181, 0.08);
+      color: var(--purple);
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+    .title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #241836;
+      line-height: 1.2;
+    }
+    .text {
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 35px;
+      font-size: 15px;
+    }
+
+    /* 6. Buttons */
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn {
+      text-decoration: none;
+      padding: 16px 20px;
+      border-radius: 18px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-main {
+      background: linear-gradient(90deg, var(--purple), var(--purple2));
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(106, 31, 181, 0.15);
+    }
+    .btn-main:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(106, 31, 181, 0.25);
+    }
+    .btn-sub {
+      color: var(--purple);
+      background: rgba(106, 31, 181, 0.05);
+      border: 1px solid rgba(106, 31, 181, 0.1);
+    }
+    .btn-sub:hover {
+      background: rgba(106, 31, 181, 0.1);
+    }
+
+    @media (max-width: 400px) {
+      .success-card { padding: 40px 20px; }
+      .title { font-size: 22px; }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="app">
-    <main class="main">
+  <div class="success-card">
+    <div class="logo-wrap">
+      <div class="logo-img"></div>
+      <div class="brand-name">The Playhub</div>
+    </div>
 
-      <!-- TITLE -->
-      <header class="topTitle">
-        <div class="topTitle__text" data-text="The Playhub">
-          The Playhub
-        </div>
-      </header>
+    <div class="badge">Submission Received</div>
+    <h2 class="title">Thanks! Your game was submitted ✅</h2>
+    <p class="text">
+      We received your submission. If your game fits our platform, we’ll respond within 24 hours.
+    </p>
 
-      <!-- THANK YOU BLOCK (uses your aboutBlock styles) -->
-      <section class="aboutBlock">
-        <div class="aboutInner">
-
-          <div class="aboutMini">SUBMISSION RECEIVED</div>
-          <h2 class="aboutTitle">Thanks! Your game was submitted ✅</h2>
-
-          <p class="aboutText">
-            We received your submission. If your game fits our platform, we’ll respond within 24 hours.
-          </p>
-
-          <div class="aboutActions">
-            <a class="btnFlat" href="index.html">Back to Home</a>
-            <a class="btnFlat" href="mailto:theplayHubprivate@gmail.com">Contact</a>
-          </div>
-
-        </div>
-      </section>
-
-    </main>
+    <div class="actions">
+      <a class="btn btn-main" href="index.html">Back to Home</a>
+      <a class="btn btn-sub" href="mailto:theplayHubprivate@gmail.com">Contact Support</a>
+    </div>
   </div>
 
 </body>
