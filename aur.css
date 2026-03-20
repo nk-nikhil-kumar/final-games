@@ -788,7 +788,8 @@ h2.title{
   display:grid;place-items:center;
   overflow:hidden;
 }
-.footer-logo span{font-weight:800;letter-spacing:.12em;color:#fff;font-size:14px}
+.footer-logo{     background-image:  url("finallogo.png");             background-position: center; /* Image ko beech mein rakhega */
+background-size: 185%;  }      /*font-weight:800;letter-spacing:.12em;color:#fff;font-size:14px}/*/
 .footer-name b{font-size:20px;letter-spacing:.04em}
 .footer-name small{display:block;margin-top:2px;letter-spacing:.26em;opacity:.75;font-size:11px}
 .footer-text{color:rgba(255,255,255,.75);line-height:1.7;margin:10px 0 22px;max-width:360px}
