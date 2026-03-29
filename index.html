@@ -128,7 +128,7 @@
 
 
 <!-- winderness 100 -->
-        <article class="tile reveal">
+       <!--- <article class="tile reveal">
           <button class="cover" type="button" data-src="https://sarthak-bhagat.itch.io/winderness-100">
             <img class="cover-img" src="sb7.jpg" alt="Titan Simulator cover" loading="eager" decoding="sync" fetchpriority="high">
             <video class="cover-vid" muted loop playsinline preload="metadata">
@@ -145,8 +145,28 @@
             <button class="close-frame" type="button">×</button>
             <iframe frameborder="0" loading="lazy" allowfullscreen></iframe>
           </div>
-        </article>
+        </article> -->
 
+        <article class="tile reveal">
+  <button class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/16950108?color=333333')">
+    <img class="cover-img" src="sb7.jpg" alt="Titan Simulator cover">
+    <video class="cover-vid" muted loop playsinline preload="metadata">
+      <source src="sb7.mp4" type="video/mp4">
+    </video>
+    <div class="tile-badge">3D</div>
+    <div class="tile-info">
+      <h3>Winderness 100</h3>
+      <p>Scale, movement and immersive 2D play.</p>
+    </div>
+  </button>
+</article>
+
+<script>
+function openGame(gameUrl) {
+    // URL ko encode karke dusre page pe bhej rhe hain
+    window.location.href = "gamerun.html?gameSrc=" + encodeURIComponent(gameUrl);
+}
+</script>
  <!-- number game -->
         <article class="tile reveal">
           <button class="cover" type="button" data-src="https://alien-me.itch.io/games-test">
@@ -169,7 +189,7 @@
 
 
           <!-- maze -->
-        <article class="tile reveal">
+      <!--- <article class="tile reveal">
           <button class="cover" type="button" data-src="https://loquacious-meerkat-bade16.netlify.app/">
             <img class="cover-img" src="maze.png" alt="Maze game cover" loading="eager" decoding="sync" fetchpriority="high">
             <video class="cover-vid" muted loop playsinline preload="metadata">
@@ -186,8 +206,23 @@
             <button class="close-frame" type="button">×</button>
             <iframe frameborder="0" loading="lazy" allowfullscreen></iframe>
           </div>
-        </article>
-     <!-- 2 -->
+        </article>-->
+        <article class="tile reveal">
+  <button class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/16506276?color=000000')">
+    <img class="cover-img" src="maze.png" alt="Maze game cover">
+    <video class="cover-vid" muted loop playsinline preload="metadata">
+      <source src="mazevid.mp4" type="video/mp4">
+    </video>
+    <div class="tile-badge">Puzzle</div>
+    <div class="tile-info">
+      <h3>Maze Escape</h3>
+      <p>Navigate tricky paths and escape fast.</p>
+    </div>
+  </button>
+</article>
+
+
+     <!-- aim paper ball game -->
 
         <article class="tile reveal">
           <button class="cover" type="button" data-src="https://tangerine-bavarois-31402b.netlify.app/">
@@ -210,7 +245,7 @@
 
       
 
-        <!-- 3 -->
+        <!-- ninaja sprint  https://itch.io/embed-upload/16171151?color=333333
         <article class="tile reveal">
           <button class="cover" type="button" data-src="https://sarthak-bhagat.itch.io/ninja-sprint-web">
             <img class="cover-img" src="ninja.jpg" alt="Ninja Sprint cover" loading="eager" decoding="sync" fetchpriority="high">
@@ -228,9 +263,25 @@
             <button class="close-frame" type="button">×</button>
             <iframe frameborder="0" loading="lazy" allowfullscreen></iframe>
           </div>
-        </article>
+        </article> -->
 
-        <!-- 4 -->
+
+        <article class="tile reveal">
+  <button class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/16366206?color=333333')">
+    <img class="cover-img" src="ninja.jpg" alt="Ninja Sprint cover">
+    <video class="cover-vid" muted loop playsinline preload="metadata">
+      <source src="ninjavid.mp4" type="video/mp4">
+    </video>
+    <div class="tile-badge">Puzzle</div>
+    <div class="tile-info">
+      <h3>Ninja Sprint</h3>
+      <p>Stylish speed, jumps and nonstop action.</p>
+    </div>
+  </button>
+</article>
+
+
+        <!-- teaceher game  ""  
         <article class="tile reveal">
           <button class="cover" type="button" data-src="https://taupe-axolotl-c182ba.netlify.app/">
             <img class="cover-img" src="teacher.png" alt="Teacher game cover" loading="eager" decoding="sync" fetchpriority="high">
@@ -248,9 +299,28 @@
             <button class="close-frame" type="button">×</button>
             <iframe frameborder="0" loading="lazy" allowfullscreen></iframe>
           </div>
-        </article>
+        </article> -->
 
-        <!-- 5 -->
+
+<article class="tile reveal">
+  <button class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/16366206?color=333333')">
+    <img class="cover-img" src="teacher.png" alt="Teacher game cover">
+    <video class="cover-vid" muted loop playsinline preload="metadata">
+      <source src="teachervid.mp4" type="video/mp4">
+    </video>
+    <div class="tile-badge">Puzzle</div>
+    <div class="tile-info">
+      <h3>Teacher Rush</h3>
+      <p>Fun browser gameplay with quick rounds.</p>
+    </div>
+  </button>
+</article>
+
+
+
+
+
+        <!-- titan-->
         <article class="tile reveal">
           <button class="cover" type="button" data-src="https://alien-me.itch.io/titan-simulator">
             <img class="cover-img" src="titan.png" alt="Titan Simulator cover" loading="eager" decoding="sync" fetchpriority="high">
@@ -273,7 +343,7 @@
 
 
         
-        <!-- 6 -->
+        <!-- Dash out -->
         <article class="tile reveal">
           <button class="cover" type="button" data-src="https://monumental-dusk-3c0767.netlify.app/">
             <img class="cover-img" src="dashout.png" alt="Dash Out cover" loading="eager" decoding="sync" fetchpriority="high">
