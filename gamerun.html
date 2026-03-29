@@ -168,6 +168,169 @@
         } else {
             window.location.href = "index.html";
         }
+
+        // --- LIKE & DISLIKE SYSTEM WITH TOGGLE & REAL-TIME UI ---
+
+async function initInteractions() {
+    const likeBtn = document.querySelector('.left-actions .btn-action:first-child');
+    const dislikeBtn = document.querySelector('.left-actions .btn-action:nth-child(2)');
+    
+    const likeText = likeBtn.querySelector('span');
+    const dislikeText = dislikeBtn.querySelector('span');
+
+    // 1. IP Fetch for Unique Identity
+    let userIp = "";
+    try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        userIp = data.ip;
+    } catch (e) { userIp = "user_local"; }
+
+    // 2. Data Load (Initial Counts)
+    let likes = parseInt(localStorage.getItem('total_likes')) || 1200;
+    let dislikes = parseInt(localStorage.getItem('total_dislikes')) || 45;
+
+    // Initial Display Update
+    const updateUI = () => {
+        likeText.innerText = likes >= 1000 ? (likes / 1000).toFixed(1) + "k" : likes;
+        dislikeText.innerText = dislikes; // Dislike usually simple numbers mein acche lagte hain
+        
+        // Active Styles
+        likeBtn.style.color = localStorage.getItem('liked_' + userIp) ? "var(--purple)" : "inherit";
+        likeBtn.style.background = localStorage.getItem('liked_' + userIp) ? "#eeeaff" : "var(--soft)";
+        
+        dislikeBtn.style.color = localStorage.getItem('disliked_' + userIp) ? "#ff4757" : "inherit";
+        dislikeBtn.style.background = localStorage.getItem('disliked_' + userIp) ? "#fff0f0" : "var(--soft)";
+    };
+
+    updateUI();
+
+    // 3. Like Click Logic
+    likeBtn.onclick = () => {
+        const hasLiked = localStorage.getItem('liked_' + userIp);
+        
+        if (!hasLiked) {
+            likes++;
+            localStorage.setItem('liked_' + userIp, true);
+            // Agar dislike kiya tha toh use hatao (Standard UX)
+            if(localStorage.getItem('disliked_' + userIp)) {
+                dislikes--;
+                localStorage.removeItem('disliked_' + userIp);
+            }
+            animateButton(likeBtn, "up");
+        } else {
+            // [TOGGLE] Wapas click kiya toh like hata do
+            likes--;
+            localStorage.removeItem('liked_' + userIp);
+            animateButton(likeBtn, "down");
+        }
+        
+        localStorage.setItem('total_likes', likes);
+        localStorage.setItem('total_dislikes', dislikes);
+        updateUI();
+    };
+
+    // 4. Dislike Click Logic
+    dislikeBtn.onclick = () => {
+        const hasDisliked = localStorage.getItem('disliked_' + userIp);
+        
+        if (!hasDisliked) {
+            dislikes++;
+            localStorage.setItem('disliked_' + userIp, true);
+            // Agar like kiya tha toh use hatao
+            if(localStorage.getItem('liked_' + userIp)) {
+                likes--;
+                localStorage.removeItem('liked_' + userIp);
+            }
+            animateButton(dislikeBtn, "up");
+        } else {
+            // [TOGGLE] Wapas click kiya toh dislike hata do
+            dislikes--;
+            localStorage.removeItem('disliked_' + userIp);
+            animateButton(dislikeBtn, "down");
+        }
+        
+        localStorage.setItem('total_likes', likes);
+        localStorage.setItem('total_dislikes', dislikes);
+        updateUI();
+    };
+}
+
+// [NEW] Advanced Animation Function
+function animateButton(btn, type) {
+    btn.style.transition = "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    
+    if (type === "up") {
+        btn.style.transform = "scale(1.4) translateY(-5px) rotate(-10deg)";
+        setTimeout(() => btn.style.transform = "scale(1) translateY(0) rotate(0deg)", 250);
+    } else {
+        btn.style.transform = "scale(0.8) translateY(2px)";
+        setTimeout(() => btn.style.transform = "scale(1) translateY(0)", 250);
+    }
+}
+
+initInteractions();
+
+// --- ADVANCED SHARE SYSTEM (COPY + FLOATING TOAST) ---
+
+const shareBtn = document.querySelector('.btn-share');
+
+shareBtn.onclick = async () => {
+    // 1. Current Page ka URL pakdo
+    const currentUrl = window.location.href;
+
+    try {
+        // 2. Clipboard mein copy karo
+        await navigator.clipboard.writeText(currentUrl);
+
+        // 3. Floating "Toast" Element banao (Dynamic UI)
+        const toast = document.createElement('div');
+        toast.innerText = "Link Copied! 🚀";
+        
+        // --- TOAST STYLING (CSS via JS) ---
+        Object.assign(toast.style, {
+            position: 'absolute',
+            bottom: '70px', // Button ke theek upar
+            left: '50%',
+            transform: 'translateX(-50%) translateY(20px)',
+            background: 'var(--purple)',
+            color: 'white',
+            padding: '8px 16px',
+            borderRadius: '12px',
+            fontSize: '13px',
+            fontWeight: '600',
+            boxShadow: '0 10px 25px rgba(106,31,181,0.3)',
+            opacity: '0',
+            transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+            zIndex: '100',
+            whiteSpace: 'nowrap'
+        });
+
+        // Button ke parent (Action Bar) mein daalo taaki position sahi rahe
+        shareBtn.parentElement.style.position = 'relative';
+        shareBtn.parentElement.appendChild(toast);
+
+        // --- ANIMATION START ---
+        setTimeout(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(-50%) translateY(0)';
+        }, 10);
+
+        // 4. Button Bounce Animation
+        shareBtn.style.transform = "scale(0.9)";
+        setTimeout(() => shareBtn.style.transform = "scale(1)", 150);
+
+        // 5. 2 Second baad Toast ko hata do (Fade out)
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(-50%) translateY(-10px)';
+            setTimeout(() => toast.remove(), 400);
+        }, 2000);
+
+    } catch (err) {
+        console.error("Copy fail ho gaya", err);
+    }
+};
     </script>
 
 </body>
