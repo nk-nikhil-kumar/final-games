@@ -98,10 +98,7 @@ header.scrolled{
   width:52px;
   height:52px;
   border-radius:16px;
-  background:  url("finallogo.png");   
-  
-  background-position: center; /* Image ko beech mein rakhega */
-background-size: 185%;
+  background: url("finallogo.png") center/185% no-repeat;
 
 /*linear-gradient(135deg,var(--purple),var(--purple2));*/
   display:grid;
@@ -787,13 +784,12 @@ h2.title{
 .brand-col .footer-brand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
 .footer-logo{
   width:56px;height:56px;border-radius:18px;
-  background:rgba(255,255,255,.06);
+  background: rgba(255,255,255,.06) url("finallogo.png") center/185% no-repeat;
   border:1px solid rgba(255,255,255,.10);
   display:grid;place-items:center;
   overflow:hidden;
 }
-.footer-logo{     background-image:  url("finallogo.png");             background-position: center; /* Image ko beech mein rakhega */
-background-size: 185%;  }      /*font-weight:800;letter-spacing:.12em;color:#fff;font-size:14px}/*/
+/*font-weight:800;letter-spacing:.12em;color:#fff;font-size:14px}*/
 .footer-name b{font-size:20px;letter-spacing:.04em}
 .footer-name small{display:block;margin-top:2px;letter-spacing:.26em;opacity:.75;font-size:11px}
 .footer-text{color:rgba(255,255,255,.75);line-height:1.7;margin:10px 0 22px;max-width:360px}
