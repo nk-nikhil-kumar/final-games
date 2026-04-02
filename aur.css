@@ -98,7 +98,7 @@ header.scrolled{
   width:52px;
   height:52px;
   border-radius:16px;
-  background:  url("finallogo.png");   
+  background:  url("image.png");   
   
   background-position: center; /* Image ko beech mein rakhega */
 background-size: 185%;
@@ -788,7 +788,7 @@ h2.title{
   display:grid;place-items:center;
   overflow:hidden;
 }
-.footer-logo{     background-image:  url("finallogo.png");             background-position: center; /* Image ko beech mein rakhega */
+.footer-logo{     background-image:  url("image.png");             background-position: center; /* Image ko beech mein rakhega */
 background-size: 185%;  }      /*font-weight:800;letter-spacing:.12em;color:#fff;font-size:14px}/*/
 .footer-name b{font-size:20px;letter-spacing:.04em}
 .footer-name small{display:block;margin-top:2px;letter-spacing:.26em;opacity:.75;font-size:11px}
