@@ -215,8 +215,16 @@
                     }
                 }
             }
+            // Update UI elements
             document.getElementById('gameTitle').innerText = foundTitle + " - Description";
             document.getElementById('gameDescText').innerText = foundDesc;
+            
+            // [SEO PLAN] Update browser title and meta description automatically
+            document.title = foundTitle + " | Play Free on The PlayHub";
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if(metaDesc) {
+                metaDesc.setAttribute("content", foundDesc);
+            }
         }
 
         // Script to run game and populate description
