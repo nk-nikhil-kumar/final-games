@@ -8,7 +8,7 @@
     <meta name="author" content="The Playhub">
     <title>The PlayHub | Playing Game</title>
     <!-- Favicon -->
-    <link rel="icon" href="image.png" type="image/png">
+    <link rel="icon" href="finallogo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -50,7 +50,7 @@
         .logo-icon {
             width: 36px; height: 36px;
             border-radius: 10px;
-            background: url("image.png") center/185% no-repeat;
+            background: url("finallogo.png") center/185% no-repeat;
             box-shadow: 0 8px 15px rgba(106,31,181,.15);
         }
         .logo-text b { color: #111; font-size: 16px; }
@@ -191,7 +191,7 @@
         </div>
     </main>
 
-    <script>
+    <script>z
         // Descriptions Database (Random text specific to each game)
         const gameData = {
             '15602139': { title: "Winderness 100", desc: "Explore a vast open world in this immersive 3D adventure. Navigate carefully through the treacherous paths, gather resources, and conquer the wilderness. Will you survive the ultimate 100-level challenge? Experience thrilling gameplay, dynamic environments, and intense action in every single moment!" },
@@ -215,16 +215,8 @@
                     }
                 }
             }
-            // Update UI elements
             document.getElementById('gameTitle').innerText = foundTitle + " - Description";
             document.getElementById('gameDescText').innerText = foundDesc;
-            
-            // [SEO PLAN] Update browser title and meta description automatically
-            document.title = foundTitle + " | Play Free on The PlayHub";
-            const metaDesc = document.querySelector('meta[name="description"]');
-            if(metaDesc) {
-                metaDesc.setAttribute("content", foundDesc);
-            }
         }
 
         // Script to run game and populate description
