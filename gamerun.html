@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play the best free online games instantly on The Playhub. Action, Puzzle, Arcade and 3D browser games. No download required.">
+    <meta name="keywords" content="free online games, browser games, play games online, webgl games, no download games">
+    <meta name="author" content="The Playhub">
     <title>The PlayHub | Playing Game</title>
+    <!-- Favicon -->
+    <link rel="icon" href="image.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -18,14 +23,14 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* [CHANGE] body overflow hidden kiya taaki scroll na aaye aur game screen pe fit rahe */
+        /* [CHANGE] Body overflow allows scrolling now for description */
         body {
             font-family: 'Poppins', sans-serif;
-            background: var(--bg);
-            height: 100vh;
+            background: var(--soft);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden; 
+            overflow-x: hidden; 
         }
 
         /* [CHANGE] Header ko slim (44px) kar diya taaki game upar shift ho jaye */
@@ -50,21 +55,22 @@
         }
         .logo-text b { color: #111; font-size: 16px; }
 
-        /* [CHANGE] Player section ko flex-grow diya taaki ye bachi hui puri space lele */
+        /* [CHANGE] Player section flexible height with padding for scrolling */
         .player-section {
             flex: 1;
-            padding: 15px;
+            padding: 20px 15px 60px 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             background: var(--soft);
         }
 
-        /* [CHANGE] Game Wrapper ab screen height ke hisaab se adjust hoga (max 75% height) */
+        /* [CHANGE] Game Wrapper fixed viewport height based logic */
         .game-wrapper {
             width: min(1200px, 100%);
-            flex: 1;
+            height: 75vh;
+            min-height: 480px;
             background: #000;
             border-radius: var(--radius);
             box-shadow: 0 20px 50px rgba(0,0,0,0.15);
@@ -117,6 +123,27 @@
             .action-bar { padding: 8px; }
             .btn-action span { display: none; } /* Mobile pe sirf icons dikhenge */
         }
+
+        /* [NEW] Game Description Box */
+        .game-description {
+            width: min(1200px, 100%);
+            background: #fff;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            color: #444;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        .game-description h2 {
+            color: var(--ink);
+            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: 800;
+        }
     </style>
 </head>
 <body>
@@ -157,14 +184,48 @@
                 </button>
             </div>
         </div>
+
+        <div class="game-description" id="gameDescriptionBox">
+            <h2 id="gameTitle">Game Description</h2>
+            <p id="gameDescText">Loading description...</p>
+        </div>
     </main>
 
     <script>
-        // Same logic as before
+        // Descriptions Database (Random text specific to each game)
+        const gameData = {
+            '15602139': { title: "Winderness 100", desc: "Explore a vast open world in this immersive 3D adventure. Navigate carefully through the treacherous paths, gather resources, and conquer the wilderness. Will you survive the ultimate 100-level challenge? Experience thrilling gameplay, dynamic environments, and intense action in every single moment!" },
+            '16777369': { title: "Numeral Horde Survival", desc: "Survive endless waves of enemies using the power of numbers. Strategize your upgrades, aim perfectly, and defend your base from the massive numeric invasion. A perfect blend of mechanics and mathematics to keep your brain and reflexes sharp!" },
+            '16506276': { title: "Maze Escape", desc: "Navigate through intricate puzzles and find your way out of the complex maze before time runs out. Mind-bending challenges await you around every corner. Keep your eyes open, track your steps, and don't get lost in the endless loops!" },
+            '16509341': { title: "Aim Challenge", desc: "Test your fast reflexes and precision shooting in this action-packed challenge. Hit every target, avoid the penalties, and achieve the highest score possible. Train your aim and become the ultimate marksman!" },
+            '16366206': { title: "Ninja Sprint / Teacher Rush", desc: "Dash, jump, and slash your way through difficult obstacles. Use your stealth, fast speed, and quick thinking to complete each level as fast as possible. A fun, casual yet highly competitive browser game!" },
+            '16375403': { title: "Titan Simulator", desc: "Take control of a massive titan! Experience epic scale, destructive movements, and thrilling 3D physics in this ultimate simulation. Stomp around, swing powerful hits, and cause absolute cinematic chaos!" }
+        };
+
+        function populateDescription(url) {
+            let foundTitle = "Featured Game";
+            let foundDesc = "Welcome to this amazing game on The PlayHub! Enjoy immersive gameplay, stunning visuals, and endless entertainment. Play now, explore different levels, and challenge your friends to beat your high score. Get ready for an unforgettable and thrilling gaming experience straight from your browser!";
+            
+            if (url) {
+                for (let key in gameData) {
+                    if (url.includes(key)) {
+                        foundTitle = gameData[key].title;
+                        foundDesc = gameData[key].desc;
+                        break;
+                    }
+                }
+            }
+            document.getElementById('gameTitle').innerText = foundTitle + " - Description";
+            document.getElementById('gameDescText').innerText = foundDesc;
+        }
+
+        // Script to run game and populate description
         const urlParams = new URLSearchParams(window.location.search);
         const gameUrl = urlParams.get('gameSrc');
         if (gameUrl) {
-            document.getElementById('mainGameFrame').src = decodeURIComponent(gameUrl);
+            const decodedUrl = decodeURIComponent(gameUrl);
+            document.getElementById('mainGameFrame').src = decodedUrl;
+            populateDescription(decodedUrl);
         } else {
             window.location.href = "index.html";
         }
