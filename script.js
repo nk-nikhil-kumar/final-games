@@ -9,8 +9,9 @@ document.querySelectorAll(".tile").forEach(tile => {
 
   tile.addEventListener("mouseenter", () => {
     if (!video) return;
+    video.muted = true;
     video.currentTime = 0;
-    video.play().catch(() => {});
+    video.play().catch(e => console.error("Video play failed:", e));
   });
 
   tile.addEventListener("mouseleave", () => {

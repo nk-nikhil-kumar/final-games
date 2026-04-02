@@ -193,7 +193,7 @@
         </div>
     </main>
 
-    <script>z
+    <script>
         // Descriptions Database (Random text specific to each game)
         const gameData = {
             '15602139': { title: "Winderness 100", desc: "Explore a vast open world in this immersive 3D adventure. Navigate carefully through the treacherous paths, gather resources, and conquer the wilderness. Will you survive the ultimate 100-level challenge? Experience thrilling gameplay, dynamic environments, and intense action in every single moment!" },
@@ -225,9 +225,8 @@
         const urlParams = new URLSearchParams(window.location.search);
         const gameUrl = urlParams.get('gameSrc');
         if (gameUrl) {
-            const decodedUrl = decodeURIComponent(gameUrl);
-            document.getElementById('mainGameFrame').src = decodedUrl;
-            populateDescription(decodedUrl);
+            document.getElementById('mainGameFrame').src = gameUrl;
+            populateDescription(gameUrl);
         } else {
             window.location.href = "index.html";
         }
