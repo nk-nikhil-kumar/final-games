@@ -1,3 +1,36 @@
+/* =========================
+   MOBILE MENU & HEADER
+========================== */
+const menuBtn = document.getElementById("menuBtn");
+const drawer = document.getElementById("drawer");
+const hdr = document.getElementById("hdr");
+
+if (menuBtn && drawer) {
+  menuBtn.addEventListener("click", () => {
+    menuBtn.classList.toggle("is-open");
+    drawer.classList.toggle("open");
+  });
+
+  // Close drawer on link click
+  drawer.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      menuBtn.classList.remove("is-open");
+      drawer.classList.remove("open");
+    });
+  });
+}
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 20) {
+    if (hdr) hdr.classList.add("scrolled");
+  } else {
+    if (hdr) hdr.classList.remove("scrolled");
+  }
+});
+
+/* =========================
+   GAME TILES LOGIC
+========================== */
 document.querySelectorAll(".tile").forEach(tile => {
 
   const cover = tile.querySelector(".cover");
@@ -35,7 +68,21 @@ document.querySelectorAll(".tile").forEach(tile => {
 
 });
 
+/* =========================
+   SCROLL REVEAL ANIMATIONS
+========================== */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("in");
+      revealObserver.unobserve(entry.target); // optional: only animate once
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: "0px 0px -50px 0px"
+});
 
-
-
-
+document.querySelectorAll(".reveal").forEach(el => {
+  revealObserver.observe(el);
+});
