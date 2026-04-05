@@ -58,21 +58,111 @@
         .logo-text b { color: #111; font-size: 16px; }
 
         /* [CHANGE] Player section flexible height with padding for scrolling */
+        /* Updated on 2026-04-06: 2-Column layout integration (CrazyGames style) */
         .player-section {
             flex: 1;
-            padding: 20px 15px 60px 15px;
+            padding: 24px; /* Uniform spacing main box padding */
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 24px; /* Gap between containers */
+            background: var(--soft);
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* [NEW] Main Column */
+        .main-column {
+            flex: 1;
             display: flex;
             flex-direction: column;
+            gap: 24px; /* Uniform spacing matches external */
             align-items: center;
-            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* [NEW] Sidebar Column */
+        .sidebar-column {
+            width: 320px;
+            flex-shrink: 0;
+            background: #fff;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: calc(100vh - 120px);
+            position: sticky;
+            top: 30px;
+            overflow-y: auto;
+        }
+
+        .sidebar-column::-webkit-scrollbar { width: 6px; }
+        .sidebar-column::-webkit-scrollbar-track { background: transparent; }
+        .sidebar-column::-webkit-scrollbar-thumb { background: #d1c8e1; border-radius: 10px; }
+        
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--ink);
+            margin-bottom: 5px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--soft);
+        }
+
+        .suggest-game {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 12px;
+            transition: 0.3s;
             background: var(--soft);
+            border: 1px solid transparent;
+        }
+
+        .suggest-game:hover {
+            background: #fff;
+            transform: translateY(-2px);
+            border-color: var(--purple);
+            box-shadow: 0 5px 15px rgba(106,31,181,0.1);
+        }
+
+        .suggest-game img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .suggest-info { display: flex; flex-direction: column; }
+        .suggest-info b { font-size: 14px; color: var(--ink); line-height: 1.2; }
+        .suggest-info span { font-size: 11px; color: var(--purple); font-weight: 600; margin-top: 4px; text-transform: uppercase; }
+
+        @media (max-width: 1024px) {
+            .player-section { flex-direction: column; align-items: center; }
+            .sidebar-column {
+                width: 100%;
+                max-width: 1000px;
+                height: auto;
+                position: static;
+                top: 0;
+            }
         }
 
         /* [CHANGE] Game Wrapper fixed viewport height based logic */
+        /* Updated on 2026-04-06: Layout adjusted to '16 / 10' kyuni 4:3 me top aur bottom empty gap aa raha tha, aur 16:9 me side me aaraha tha. 16:10 ekdum perfect sweet spot hai. */
         .game-wrapper {
-            width: min(1200px, 100%);
-            height: 75vh;
-            min-height: 480px;
+            position: relative; /* Added by 2026-04-06 to hold fullscreen button */
+            width: min(1000px, 100%);
+            aspect-ratio: 16 / 10;
+            height: auto;
             background: #000;
             border-radius: var(--radius);
             box-shadow: 0 20px 50px rgba(0,0,0,0.15);
@@ -80,7 +170,50 @@
             overflow: hidden;
         }
 
-        iframe { width: 100%; height: 100%; border: none; }
+        /* Unity text hide trick added on 2026-04-06: 
+           Height is set to 43px larger than 100% so the iframe's bottom part (Unity footer) gets chopped off by the wrapper's overflow hidden! */
+        iframe { 
+            width: 100%; 
+            height: calc(100% + 43px); 
+            border: none; 
+            display: block; 
+        }
+
+        /* Custom Full-Screen button added on 2026-04-06 */
+        .custom-fs-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .custom-fs-btn:hover {
+            background: var(--purple);
+            transform: scale(1.1);
+            border-color: #fff;
+            box-shadow: 0 5px 15px rgba(106, 31, 181, 0.4);
+        }
+
+        .custom-fs-btn svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff;
+        }
+
+        /* Hide the button when actual fullscreen is active */
+        :fullscreen .custom-fs-btn { display: none; }
+        :-webkit-full-screen .custom-fs-btn { display: none; }
 
         /* [NEW] Social Action Bar - Game ke theek niche */
         .action-bar {
@@ -159,41 +292,89 @@
     </header>
 
     <main class="player-section">
-        <div class="game-wrapper">
-            <iframe id="mainGameFrame" src="" allowfullscreen loading="eager" fetchpriority="high"></iframe>
-        </div>
-
-        <div class="action-bar">
-            <div class="left-actions">
-                <button class="btn-action">
-                    <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
-                    <span>1.2k</span>
-                </button>
-                <button class="btn-action">
-                    <svg viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
-                    <span>Dislike</span>
-                </button>
+        <div class="main-column">
+            <div class="game-wrapper" id="gameWrapper">
+                <iframe id="mainGameFrame" src="" allowfullscreen loading="eager" fetchpriority="high"></iframe>
+                <!-- Date: 2026-04-06 - Naya bada aur visible full-screen button add kiya Unity wala button chipane ke baad -->
+                <div class="custom-fs-btn" id="fsButton" title="Play Full Screen">
+                    <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                </div>
             </div>
 
-            <div class="right-actions">
-                <button class="btn-action">
-                    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-                    <span>Comments</span>
-                </button>
-                <button class="btn-action btn-share">
-                    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
-                    <span>Share</span>
-                </button>
+            <div class="action-bar">
+                <div class="left-actions">
+                    <button class="btn-action">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+                        <span>1.2k</span>
+                    </button>
+                    <button class="btn-action">
+                        <svg viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+                        <span>Dislike</span>
+                    </button>
+                </div>
+
+                <div class="right-actions">
+                    <button class="btn-action">
+                        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+                        <span>Comments</span>
+                    </button>
+                    <button class="btn-action btn-share">
+                        <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+                        <span>Share</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="game-description" id="gameDescriptionBox">
+                <h2 id="gameTitle">Game Description</h2>
+                <p id="gameDescText"></p>
             </div>
         </div>
 
-        <div class="game-description" id="gameDescriptionBox">
-            <h2 id="gameTitle">Game Description</h2>
-            <p id="gameDescText"></p>
-        </div>
+        <!-- Sidebar for Suggestions -->
+        <aside class="sidebar-column">
+            <div class="sidebar-title">More Games</div>
+            <a href="javascript:openGame('https://itch.io/embed-upload/16985334?color=333333')" class="suggest-game">
+                <img src="sb7.jpg" alt="Winderness 100">
+                <div class="suggest-info"><b>Winderness 100</b><span>3D • Action</span></div>
+            </a>
+            <a href="javascript:openGame('https://itch.io/embed-upload/16777369?color=333333')" class="suggest-game">
+                <img src="al8.jpg" alt="Numeral Horde Survival">
+                <div class="suggest-info"><b>Numeral Horde</b><span>3D • Survival</span></div>
+            </a>
+            <a href="javascript:openGame('https://itch.io/embed-upload/16506276?color=000000')" class="suggest-game">
+                <img src="maze.png" alt="Maze Escape">
+                <div class="suggest-info"><b>Maze Escape</b><span>Puzzle</span></div>
+            </a>
+            <a href="javascript:openGame('https://itch.io/embed-upload/16509341?color=333333')" class="suggest-game">
+                <img src="aimim.png" alt="Aim Challenge">
+                <div class="suggest-info"><b>Aim Challenge</b><span>Action</span></div>
+            </a>
+            <a href="javascript:openGame('https://itch.io/embed-upload/16171151?color=333333')" class="suggest-game">
+                <img src="ninja.jpg" alt="Ninja Sprint">
+                <div class="suggest-info"><b>Ninja Sprint</b><span>Runner</span></div>
+            </a>
+            <a href="javascript:openGame('https://itch.io/embed-upload/16366206?color=333333')" class="suggest-game">
+                <img src="teacher.png" alt="Teacher Rush">
+                <div class="suggest-info"><b>Teacher Rush</b><span>Casual</span></div>
+            </a>
+            <a href="javascript:openGame('https://itch.io/embed-upload/16375403?color=333333')" class="suggest-game">
+                <img src="titan.png" alt="Titan Simulator">
+                <div class="suggest-info"><b>Titan Simulator</b><span>3D</span></div>
+            </a>
+            <a href="javascript:openGame('https://itch.io/embed-upload/15602139?color=333333')" class="suggest-game">
+                <img src="dashout.png" alt="Dash Out">
+                <div class="suggest-info"><b>Dash Out</b><span>Arcade</span></div>
+            </a>
+        </aside>
     </main>
 
     <script>
+        // Open Game Function for Sidebar Suggestions
+        function openGame(gameUrl) {
+            window.location.href = "gamerun.html?gameSrc=" + encodeURIComponent(gameUrl);
+        }
+
         // Descriptions Database (Random text specific to each game)
         const gameData = {
             '15602139': { title: "Winderness 100", desc: "Explore a vast open world in this immersive 3D adventure. Navigate carefully through the treacherous paths, gather resources, and conquer the wilderness. Will you survive the ultimate 100-level challenge? Experience thrilling gameplay, dynamic environments, and intense action in every single moment!" },
@@ -391,6 +572,18 @@ shareBtn.onclick = async () => {
 
     } catch (err) {
         console.error("Copy fail ho gaya", err);
+    }
+};
+
+// Date: 2026-04-06 - Custom Fullscreen click logic
+document.getElementById('fsButton').onclick = () => {
+    const wrapper = document.getElementById('gameWrapper');
+    if (wrapper.requestFullscreen) {
+        wrapper.requestFullscreen();
+    } else if (wrapper.webkitRequestFullscreen) { /* Safari */
+        wrapper.webkitRequestFullscreen();
+    } else if (wrapper.msRequestFullscreen) { /* IE11 */
+        wrapper.msRequestFullscreen();
     }
 };
     </script>
