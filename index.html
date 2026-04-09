@@ -84,7 +84,7 @@
       <a class="social" href="https://discord.gg/WHUBhecV" target="_blank" rel="noopener" aria-label="Discord">
         <svg viewBox="0 0 24 24"><path d="M20.3 4.4A16.7 16.7 0 0 0 16.2 3l-.2.4a15 15 0 0 1 3.7 1.5 13.6 13.6 0 0 0-4.2-1.3 16 16 0 0 0-6 0A13.6 13.6 0 0 0 5.3 4.9 15 15 0 0 1 9 3.4L8.8 3A16.7 16.7 0 0 0 4.7 4.4C2.2 8.1 1.5 11.7 1.8 15.2a16.7 16.7 0 0 0 5 2.5l1.1-1.8c-.6-.2-1.2-.5-1.8-.8l.4-.3c3.5 1.6 7.4 1.6 10.8 0l.4.3c-.6.3-1.2.6-1.8.8l1.1 1.8a16.7 16.7 0 0 0 5-2.5c.4-4.1-.7-7.7-2.7-10.8zM9.5 13.2c-.9 0-1.7-.9-1.7-2s.7-2 1.7-2c1 0 1.7.9 1.7 2s-.8 2-1.7 2zm5 0c-.9 0-1.7-.9-1.7-2s.7-2 1.7-2c1 0 1.7.9 1.7 2s-.8 2-1.7 2z"/></svg>
       </a>
-      <a class="social" href="https://www.instagram.com/shisu45_/" target="_blank" rel="noopener" aria-label="Instagram">
+      <a class="social" href="https://www.instagram.com/theplayhub_pvt?igsh=MTNmaHl0ZGtzazgxcA==" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 2A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2zM17.8 6.6a.7.7 0 1 1-.7.7.7.7 0 0 1 .7-.7z"/></svg>
       </a>
     </div>
@@ -110,10 +110,10 @@
       </nav>
 
       <div class="actions">
-        <button class="cta" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">Play Now</div>
+        <button class="cta" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">Play Now</button>
         <button class="menu" id="menuBtn" aria-label="Open menu">
           <div class="bars"><span></span></div>
-        </div>
+        </button>
       </div>
     </div>
 
@@ -140,22 +140,23 @@
         </p>
 
         <div class="controls">
-          <button class="btn-soft" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">Explore Games</div>
+          <button class="btn-soft" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">Explore Games</button>
           <a class="link" href="#about">About The Playhub →</a>
         </div>
       </div>
 
-      <div class="hero-card" aria-label="Featured gaming card">
+      <div class="hero-card" aria-label="Featured gaming card" type="button" onclick="openGame('https://itch.io/embed-upload/16171151?color=333333')" style="cursor: pointer;">
         <div class="overlay">
           <div class="pill-row">
+           <span class="pill">Runner</span>
             <span class="pill">Action</span>
             <span class="pill">Puzzle</span>
-            <span class="pill">Arcade</span>
+             <span class="pill">Arcade</span>
             <span class="pill">3D</span>
             <span class="pill">Browser</span>
           </div>
           <h3>Play fast. Discover more.</h3>
-          <p>Curated indie browser games, stylish presentation, instant access, and a clean modern experience.</p>
+         <p>Curated indie browser games, stylish presentation, instant access, and a clean modern experience.</p>
         </div>
       </div>
     </div>
@@ -210,7 +211,7 @@
 </article> -->
 
         <article class="tile reveal">
-  <a href="gamerun.html?gameSrc=https%3A%2F%2Fitch.io%2Fembed-upload%2F16985334%3Fcolor%3D333333" class="cover" style="display:block; text-decoration:none; color:inherit;">
+  <div class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/16985334?color=333333')">
     <img class="cover-img" src="sb7.jpg" alt="Titan Simulator cover">
     <video class="cover-vid" muted loop playsinline preload="metadata">
       <source src="sb7.mp4" type="video/mp4">
@@ -220,7 +221,7 @@
       <h3>Winderness 100</h3>
       <p>Scale, movement and immersive 2D play.</p>
     </div>
-  </a>
+  </div>
 </article>
 
 <script>
@@ -250,7 +251,7 @@ function openGame(gameUrl) {
 </article> -->
 
    <article class="tile reveal">
-  <a href="gamerun.html?gameSrc=https%3A%2F%2Fitch.io%2Fembed-upload%2F16777369%3Fcolor%3D333333" class="cover" style="display:block; text-decoration:none; color:inherit;">
+  <div class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/16777369?color=333333')">
     <img class="cover-img" src="al8.jpg" alt="Titan Simulator cover">
     <video class="cover-vid" muted loop playsinline preload="metadata">
       <source src="bhideo.mp4" type="video/mp4">
@@ -260,7 +261,7 @@ function openGame(gameUrl) {
       <h3>Numeral hord survival</h3>
       <p>Scale, movement and immersive 2D play.</p>
     </div>
-  </a>
+  </div>
 </article>
           <!-- maze -->
       <!--- <article class="tile reveal">
@@ -282,7 +283,7 @@ function openGame(gameUrl) {
           </a>
 </article>-->
         <article class="tile reveal">
-  <a href="gamerun.html?gameSrc=https%3A%2F%2Fitch.io%2Fembed-upload%2F16506276%3Fcolor%3D000000" class="cover" style="display:block; text-decoration:none; color:inherit;">
+  <div class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/16506276?color=000000')">
     <img class="cover-img" src="maze.png" alt="Maze game cover">
     <video class="cover-vid" muted loop playsinline preload="metadata">
       <source src="mazevid.mp4" type="video/mp4">
@@ -292,14 +293,14 @@ function openGame(gameUrl) {
       <h3>Maze Escape</h3>
       <p>Navigate tricky paths and escape fast.</p>
     </div>
-  </a>
+  </div>
 </article>
 
 
      <!-- aim paper ball game -->
 
         <article class="tile reveal">
-          <a href="gamerun.html?gameSrc=https%3A%2F%2Fitch.io%2Fembed-upload%2F16509341%3Fcolor%3D333333" class="cover" style="display:block; text-decoration:none; color:inherit;">
+          <div class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/16509341?color=333333')">
             <img class="cover-img" src="aimim.png" alt="Aim game cover">
             <video class="cover-vid" muted loop playsinline preload="metadata">
               <source src="aim.mp4" type="video/mp4">
@@ -310,7 +311,7 @@ function openGame(gameUrl) {
               <h3>Aim Challenge</h3>
               <p>Fast reflexes and precision shooting.</p>
             </div>
-          </a>
+          </div>
 </article>
 
       
@@ -337,17 +338,17 @@ function openGame(gameUrl) {
 
 
         <article class="tile reveal">
-  <a href="gamerun.html?gameSrc=https%3A%2F%2Fitch.io%2Fembed-upload%2F16171151%3Fcolor%3D333333" class="cover" style="display:block; text-decoration:none; color:inherit;">
+  <div class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/16171151?color=333333')">
     <img class="cover-img" src="ninja.jpg" alt="Ninja Sprint cover">
     <video class="cover-vid" muted loop playsinline preload="metadata">
       <source src="ninjavid.mp4" type="video/mp4">
     </video>
-    <div class="tile-badge">Puzzle</div>
+    <div class="tile-badge">Runner</div>
     <div class="tile-info">
       <h3>Ninja Sprint</h3>
       <p>Stylish speed, jumps and nonstop action.</p>
     </div>
-  </a>
+  </div>
 </article>
 
 
@@ -373,17 +374,17 @@ function openGame(gameUrl) {
 
 
 <article class="tile reveal">
-  <a href="gamerun.html?gameSrc=https%3A%2F%2Fitch.io%2Fembed-upload%2F16366206%3Fcolor%3D333333" class="cover" style="display:block; text-decoration:none; color:inherit;">
+  <div class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/16366206?color=333333')">
     <img class="cover-img" src="teacher.png" alt="Teacher game cover">
     <video class="cover-vid" muted loop playsinline preload="metadata">
       <source src="teachervid.mp4" type="video/mp4">
     </video>
-    <div class="tile-badge">Puzzle</div>
+    <div class="tile-badge">Casual</div>
     <div class="tile-info">
       <h3>Teacher Rush</h3>
       <p>Fun browser gameplay with quick rounds.</p>
     </div>
-  </a>
+  </div>
 </article>
 
 
@@ -411,17 +412,17 @@ function openGame(gameUrl) {
 </article> -->
 
 <article class="tile reveal">
-  <a href="gamerun.html?gameSrc=https%3A%2F%2Fitch.io%2Fembed-upload%2F16375403%3Fcolor%3D333333" class="cover" style="display:block; text-decoration:none; color:inherit;">
+  <div class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/16375403?color=333333')">
     <img class="cover-img" src="titan.png" alt="Titan Simulator cover">
     <video class="cover-vid" muted loop playsinline preload="metadata">
       <source src="titan.mp4" type="video/mp4">
     </video>
-    <div class="tile-badge">Puzzle</div>
+    <div class="tile-badge">3D</div>
     <div class="tile-info">
       <h3>Titan Simulator</h3>
       <p>Scale, movement and immersive 3D play.</p>
     </div>
-  </a>
+  </div>
 </article>
 
         
@@ -445,17 +446,17 @@ function openGame(gameUrl) {
           </a>
 </article> -->
 <article class="tile reveal">
-  <a href="gamerun.html?gameSrc=https%3A%2F%2Fitch.io%2Fembed-upload%2F15602139%3Fcolor%3D333333" class="cover" style="display:block; text-decoration:none; color:inherit;">
+  <div class="cover" type="button" onclick="openGame('https://itch.io/embed-upload/15602139?color=333333')">
     <img class="cover-img" src="dashout.png" alt="Dash out cover">
     <video class="cover-vid" muted loop playsinline preload="metadata">
       <source src="dash.mp4" type="video/mp4">
     </video>
-    <div class="tile-badge">3D</div>
+    <div class="tile-badge">Arcade</div>
     <div class="tile-info">
       <h3>Dash Out</h3>
       <p>Quick reaction gameplay with momentum.</p>
     </div>
-  </a>
+  </div>
 </article>
  
 
@@ -579,7 +580,7 @@ function openGame(gameUrl) {
             <label class="submitLabel">Your Email</label>
             <input class="submitInput" type="email" name="Developer Email" placeholder="your@email.com" required>
 
-            <button class="cta" type="submit">Submit Game</div>
+            <button class="cta" type="submit">Submit Game</button>
 
             <div class="submitNote">
               Note: We will respond in a day if your game fits our platform.
